@@ -1,0 +1,30 @@
+﻿<!-- Шапка сайту -->
+<header id="header">
+    <div class="burger">
+        <div class="content">
+            <div class="logo"><a asp-controller="Home" asp-action="Index">
+                <img src="~/images/Logo.svg" alt="logo">
+            </a></div>
+            <div class="lines"><img src="~/images/threeLines.svg" alt=""></div>
+        </div>
+    </div>
+    <div class="neBurger">
+        <div class="header-element"><a class="navElement">Що на вас чекає?</a></div>
+        <div class="header-element"><a class="navElement">Хочу з вами</a></div>
+        <div class="logo"><img src="~/images/Logo.svg" alt="logo"></div>
+        <div class="header-element mainList" ><a class="navElement" id="toClick">Попередні роки</a>
+            <ul class="years__hidden">
+                <li>
+                    <p class="year"><span>2018</span>
+                        <div class="list__element__hidden">
+                            <a href="#">Локачі</a>
+                            <a href="#">Павловичі</a>
+                            <a href="#">Дорогиничі</a>
+                        </div>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="header-element"><a asp-controller="Home" asp-action="Mentors" class="navElement">Наставники</a></div>
+    </div>
+</header>
