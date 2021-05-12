@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WithoutBorders.Core;
 
@@ -16,7 +17,12 @@ namespace WithoutBorders.Data.Entities
         [ForeignKey(nameof(Year))]
         public int YearId { get; set; }
         
+        public virtual ICollection<Photo> Photos { get; set; }
         public virtual Year Year { get; set; }
-        
+
+        public Camp()
+        {
+            Photos = new HashSet<Photo>();
+        }
     }
 }

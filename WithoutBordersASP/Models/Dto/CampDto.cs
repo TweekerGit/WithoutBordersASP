@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using WithoutBorders.Data.Entities;
 
 namespace WithoutBordersASP.Models.Dto
@@ -9,14 +12,16 @@ namespace WithoutBordersASP.Models.Dto
         public string Place { get; set; }
         public string Name { get; set; }
         public int? YearId { get; set; }
+        public IEnumerable<Photo> Photos { get; set; }
         public YearDto Year { get; set; }
 
         public CampDto(Camp camp)
         {
             this.Id = camp.Id;
             this.Place = camp.Place;
-            this.Name = camp.Place;
+            this.Name = camp.Name;
             this.YearId = camp.YearId;
+            this.Photos = camp.Photos.ToList();
             this.Year = new YearDto(camp.Year);
         }
 
@@ -26,7 +31,9 @@ namespace WithoutBordersASP.Models.Dto
             {
                 Id = this.Id ?? throw new ArgumentNullException(nameof(Id)),
                 Place = this.Place,
+                Name = this.Name,
                 YearId = this.YearId ?? throw new ArgumentNullException(nameof(YearId)),
+                Photos = this.Photos.ToList(),
                 Year = this.Year.ToEntity()
             };
         }

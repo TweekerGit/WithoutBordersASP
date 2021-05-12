@@ -5,12 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Areas" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\WithoutBorders.Data.Entities\WithoutBorders.Data.Entities.csproj" />
+      <ProjectReference Include="..\WithoutBorders.Data.SqlServer\WithoutBorders.Data.SqlServer.csproj" />
     </ItemGroup>
 
 </Project>

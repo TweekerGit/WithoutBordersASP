@@ -1,47 +1,44 @@
-﻿<!-- Блок з наставниками -->
-    <div class="mentorWrapper">
-        <div class="leftPhoto">
-            <div class="allInformation">
-                <div class="photo"><img src="~/images/Богданка.png" alt="mentorPhoto"></div>
-                <div class="info">
-                    <h2>Петренко Богданка</h2>
-                    <p class="hoby"><span>Хоббі</span>: Любить Владіка</p>
-                    <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto assumenda molestiae exercitationem ab numquam ut id deleniti accusantium. Esse repudiandae, laborum alias animi doloremque deleniti ad illo corrupti porro sequi reiciendis qui explicabo. Veniam quibusdam mollitia, itaque deleniti optio suscipit soluta natus, pariatur deserunt consequatur voluptates dolor repellat laboriosam ratione nemo nulla quas fugit sit culpa. Praesentium hic animi, quis tenetur aliquid fugit quibusdam eveniet, eum suscipit magni libero.</p>
+﻿@model List<WithoutBorders.Data.Entities.Mentor>
+
+<!-- Блок з наставниками -->
+<div class="mentorWrapper">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        if (i % 2 == 0)
+        {
+            <div class="leftPhoto">
+                <div class="allInformation">
+                    <div class="photo">
+                        <img src="@Model[i].PhotoUrl" alt="mentorPhoto">
+                    </div>
+                    <div class="info">
+                        <h2>@Model[i].Name</h2>
+                        <p class="hoby"><span>Хоббі</span>: @Model[i].Hobby</p>
+                        <p class="about">@Model[i].About</p>
+                    </div>
+                </div>
+                <div class="fishes">
+                    <img src="~/images/FishesLeft.svg" alt="fishes">
                 </div>
             </div>
-            <div class="fishes"><img src="~/images/FishesLeft.svg" alt="fishes"></div>
-        </div>
-        <div class="rightPhoto">
-            <div class="allInformation">
-                <div class="photo"><img src="~/images/Богданка.png" alt="mentorPhoto"></div>
-                <div class="info">
-                    <h2>Петренко Богданка</h2>
-                    <p class="hoby"><span>Хоббі</span>: Любить Владіка</p>
-                    <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto assumenda molestiae exercitationem ab numquam ut id deleniti accusantium. Esse repudiandae, laborum alias animi doloremque deleniti ad illo corrupti porro sequi reiciendis qui explicabo. Veniam quibusdam mollitia, itaque deleniti optio suscipit soluta natus, pariatur deserunt consequatur voluptates dolor repellat laboriosam ratione nemo nulla quas fugit sit culpa. Praesentium hic animi, quis tenetur aliquid fugit quibusdam eveniet, eum suscipit magni libero.</p>
+        }
+        else
+        {
+            <div class="rightPhoto">
+                <div class="allInformation">
+                    <div class="photo">
+                        <img src="@Model[i].PhotoUrl" alt="mentorPhoto">
+                    </div>
+                    <div class="info">
+                        <h2>@Model[i].Name</h2>
+                        <p class="hoby"><span>Хоббі</span>: @Model[i].Hobby</p>
+                        <p class="about">@Model[i].About</p>
+                    </div>
+                </div>
+                <div class="fishes">
+                    <img src="~/images/FishesRight.svg" alt="fishes">
                 </div>
             </div>
-            <div class="fishes"><img src="~/images/FishesRight.svg" alt="fishes"></div>
-        </div>
-        <div class="leftPhoto">
-            <div class="allInformation">
-                <div class="photo"><img src="~/images/Богданка.png" alt="mentorPhoto"></div>
-                <div class="info">
-                    <h2>Петренко Богданка</h2>
-                    <p class="hoby"><span>Хоббі</span>: Любить Владіка</p>
-                    <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto assumenda molestiae exercitationem ab numquam ut id deleniti accusantium. Esse repudiandae, laborum alias animi doloremque deleniti ad illo corrupti porro sequi reiciendis qui explicabo. Veniam quibusdam mollitia, itaque deleniti optio suscipit soluta natus, pariatur deserunt consequatur voluptates dolor repellat laboriosam ratione nemo nulla quas fugit sit culpa. Praesentium hic animi, quis tenetur aliquid fugit quibusdam eveniet, eum suscipit magni libero.</p>
-                </div>
-            </div>
-            <div class="fishes"><img src="~/images/FishesLeft.svg" alt="fishes"></div>
-        </div>
-        <div class="rightPhoto">
-            <div class="allInformation">
-                <div class="photo"><img src="~/images/Богданка.png" alt="mentorPhoto"></div>
-                <div class="info">
-                    <h2>Петренко Богданка</h2>
-                    <p class="hoby"><span>Хоббі</span>: Любить Владіка</p>
-                    <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto assumenda molestiae exercitationem ab numquam ut id deleniti accusantium. Esse repudiandae, laborum alias animi doloremque deleniti ad illo corrupti porro sequi reiciendis qui explicabo. Veniam quibusdam mollitia, itaque deleniti optio suscipit soluta natus, pariatur deserunt consequatur voluptates dolor repellat laboriosam ratione nemo nulla quas fugit sit culpa. Praesentium hic animi, quis tenetur aliquid fugit quibusdam eveniet, eum suscipit magni libero.</p>
-                </div>
-            </div>
-            <div class="fishes"><img src="~/images/FishesRight.svg" alt="fishes"></div>
-        </div>
-    </div>
+        }
+    }
+</div>

@@ -9,13 +9,13 @@ namespace WithoutBordersASP.Models.Dto
     {
         public int? Id { get; set; }
         public string Name { get; set; }
-        public IEnumerable<Camp> Camps { get; set; }
+        public IEnumerable<CampDto> Camps { get; set; }
 
         public YearDto(Year year)
         {
             this.Id = year.Id;
             this.Name = year.Name;
-            this.Camps = Camps.ToList();
+            this.Camps = year.Camps.Select(c=>new CampDto(c));
         }
 
         public Year ToEntity()
@@ -24,7 +24,7 @@ namespace WithoutBordersASP.Models.Dto
             {
                 Id = this.Id ?? throw new ArgumentNullException(nameof(Id)),
                 Name = this.Name,
-                Camps = this.Camps.ToList()
+                Camps = this.Camps.Select(c=>c.ToEntity()).ToList()
             };
         }
     }

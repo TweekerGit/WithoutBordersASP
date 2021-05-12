@@ -44,6 +44,15 @@ namespace WithoutBorders.Data.SqlServer.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "407a0300-edea-4a25-83b8-ab2bebf92561",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -133,6 +142,22 @@ namespace WithoutBorders.Data.SqlServer.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7cbbfa92-63a8-4492-a2ba-eafded6448ba",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "TWEEKER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJjKzVAZGguQDXKfWl+PlEJTEk5wsC1MIs2/LTPwnzA2D8pg9KcxrzEpViCaMzBRLA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "tweeker"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -194,6 +219,13 @@ namespace WithoutBorders.Data.SqlServer.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -238,6 +270,106 @@ namespace WithoutBorders.Data.SqlServer.Migrations
                     b.HasIndex("YearId");
 
                     b.ToTable("Camps");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Expectation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Expression")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MainId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainId");
+
+                    b.ToTable("Expectation");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.MainEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("AboutPhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LeftTitle")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("LeftTitlePhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RightTitle")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("RightTitlePhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainEntities");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Mentor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<string>("Hobby")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mentors");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CampId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampId");
+
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("WithoutBorders.Data.Entities.Year", b =>
@@ -316,6 +448,38 @@ namespace WithoutBorders.Data.SqlServer.Migrations
                         .IsRequired();
 
                     b.Navigation("Year");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Expectation", b =>
+                {
+                    b.HasOne("WithoutBorders.Data.Entities.MainEntity", "MainEntity")
+                        .WithMany("Expectations")
+                        .HasForeignKey("MainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MainEntity");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Photo", b =>
+                {
+                    b.HasOne("WithoutBorders.Data.Entities.Camp", "Camp")
+                        .WithMany("Photos")
+                        .HasForeignKey("CampId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Camp");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.Camp", b =>
+                {
+                    b.Navigation("Photos");
+                });
+
+            modelBuilder.Entity("WithoutBorders.Data.Entities.MainEntity", b =>
+                {
+                    b.Navigation("Expectations");
                 });
 
             modelBuilder.Entity("WithoutBorders.Data.Entities.Year", b =>

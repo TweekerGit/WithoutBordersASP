@@ -5,6 +5,7 @@
 <head>
     @await Html.PartialAsync("MetatagsPartial")
     @await Html.PartialAsync("CssPartial")
+    @await RenderSectionAsync("Header", false)
     <title>title</title>
 </head>
 
@@ -18,6 +19,7 @@
     @await Html.PartialAsync("FooterPartial")
     
     @await Html.PartialAsync("JsPartial")
+    @await RenderSectionAsync("Script", false)
 </body>
 
 </html>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WithoutBordersASP.Models.Dto.YearDto>
+
+<div class="yearsAndCamps">
+    @if (Model.Any())
+    {
+        foreach (var year in Model)
+        {
+            <div class="year">
+                <div class="yearInfo">
+                    <p>
+                        <span>Рік: </span>@year.Name
+                    </p>
+                    <div class="yearButtons">
+                        <a href="">Змінити</a>
+                        <a href="">Видалити</a>
+                        <a href="">Добавити табір</a>
+                    </div>
+                </div>
+                <div class="camps">
+                    @if (year.Camps.Any())
+                    {
+                        foreach (var camp in year.Camps)
+                        {
+                            <div class="camp">
+                                <div class="campItem">
+                                    <p class="whatIsIt">Назва:</p>
+                                    <p>@camp.Name</p>
+                                </div>
+                                <div class="campItem">
+                                    <p class="whatIsIt">Місце:</p>
+                                    <p>@camp.Place</p>
+                                </div>
+                                <div class="campButtons">
+                                    <a href="">Змінити</a>
+                                    <a href="">Видалити</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
