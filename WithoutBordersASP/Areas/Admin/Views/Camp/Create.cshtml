@@ -1,0 +1,39 @@
+﻿@model WithoutBordersASP.Models.Dto.CampDto
+@{
+    var yearsList = ViewData["years"] as Dictionary<int, string>;
+    
+    ViewBag.controller = "Year";
+    ViewBag.action = "All";
+    ViewBag.Title = "Створити Табір";
+}
+
+<!-- Редактувати табір -->
+<form asp-area="Admin" asp-controller="Camp" asp-action="CreatePost" method="POST">
+    <div class="campEdit">
+        <input asp-for="Id" type="hidden">
+        <input asp-for="YearId" type="hidden">
+        <div class="campItem">
+            <p class="whatIsIt">Назва:</p>
+            <input asp-for="Name" type="text">
+        </div>
+        <div class="campItem">
+            <p class="whatIsIt">Місце:</p>
+            <input asp-for="Place" type="text">
+        </div>
+        <div class="campItem">
+            <p class="whatIsIt">Рік:</p>
+            <select asp-for="YearId" id="">
+                @if (yearsList.Any())
+                {
+                    foreach (var el in yearsList)
+                    {
+                        <option value="@el.Key">@el.Value</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="campButtons">
+            <button type="submit">Готово</button>
+        </div>
+    </div>
+</form>
